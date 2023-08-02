@@ -48,17 +48,16 @@ else
     exit 1
 fi
 #********** Terraform Docs *************
-## Temporary bypass
-# echo 'Starting terraform-docs'
-# TDOCS="$(terraform-docs --config ${PROJECT_PATH}/.config/.terraform-docs.yaml --lockfile=false ./)"
-# git add -N README.md
-# GDIFF="$(git diff --compact-summary)"
-# if [ -z "$GDIFF" ]
-# then
-#     echo "Success - Terraform Docs creation verified!"
-# else
-#     echo "Failure - Terraform Docs creation failed, ensure you have precommit installed and running before submitting the Pull Request"
-#     exit 1
-# fi
-# #***************************************
-# echo "End of Static Tests"
+echo 'Starting terraform-docs'
+TDOCS="$(terraform-docs --config ${PROJECT_PATH}/.config/.terraform-docs.yaml --lockfile=false ./)"
+git add -N README.md
+GDIFF="$(git diff --compact-summary)"
+if [ -z "$GDIFF" ]
+then
+    echo "Success - Terraform Docs creation verified!"
+else
+    echo "Failure - Terraform Docs creation failed, ensure you have precommit installed and running before submitting the Pull Request"
+    exit 1
+fi
+#***************************************
+echo "End of Static Tests"
