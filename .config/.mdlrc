@@ -2,4 +2,4 @@
 # MD007 Unordered list indentation
 # MD013 Line length
 # MD029 Ordered list item prefix
-rules "~MD007", "~MD013", "~MD029"
+rules "~MD007", "~MD013", "~MD029", "~MD025", "~MD012"
