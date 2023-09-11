@@ -129,6 +129,7 @@ No modules.
 | <a name="input_amplify_codecommit_role_name"></a> [amplify\_codecommit\_role\_name](#input\_amplify\_codecommit\_role\_name) | Name for the role Amplify will use to access the CodeCommit repo | `string` | `"amplify-codecommit"` | no |
 | <a name="input_app_framework"></a> [app\_framework](#input\_app\_framework) | Framework for the autocreated branch. | `string` | `null` | no |
 | <a name="input_app_name"></a> [app\_name](#input\_app\_name) | The name of the Sample Amplify Application. | `string` | `"sample-amplify-app"` | no |
+| <a name="input_app_tags"></a> [app\_tags](#input\_app\_tags) | Tags for your Amplify App. | `map(string)` | `null` | no |
 | <a name="input_auto_branch_creation_patterns"></a> [auto\_branch\_creation\_patterns](#input\_auto\_branch\_creation\_patterns) | Automated branch creation glob patterns for the Amplify app. Ex. feat*/* | `list(any)` | <pre>[<br>  "main"<br>]</pre> | no |
 | <a name="input_build_spec"></a> [build\_spec](#input\_build\_spec) | The actual content of your build\_spec. Use if 'path\_to\_build\_spec' is not defined. | `string` | `null` | no |
 | <a name="input_codecommit_repo_default_branch"></a> [codecommit\_repo\_default\_branch](#input\_codecommit\_repo\_default\_branch) | The default branch for the CodeCommit repo | `string` | `"main"` | no |
@@ -145,6 +146,7 @@ No modules.
 | <a name="input_enable_auto_build"></a> [enable\_auto\_build](#input\_enable\_auto\_build) | Enables auto-building of autocreated branches for the Amplify App. | `bool` | `false` | no |
 | <a name="input_enable_gitlab_mirroring"></a> [enable\_gitlab\_mirroring](#input\_enable\_gitlab\_mirroring) | Enables GitLab mirroring to the option AWS CodeCommit repo. | `bool` | `false` | no |
 | <a name="input_enable_performance_mode"></a> [enable\_performance\_mode](#input\_enable\_performance\_mode) | Enables performance mode for the branch. This keeps cache at Edge Locations for up to 10min after changes. | `bool` | `false` | no |
+| <a name="input_environment_variables"></a> [environment\_variables](#input\_environment\_variables) | Global environment variables for your Amplify App. These will only appear in the AWS Management Console if a git repo is connected. | `map(string)` | `null` | no |
 | <a name="input_existing_codecommit_repo_name"></a> [existing\_codecommit\_repo\_name](#input\_existing\_codecommit\_repo\_name) | Name of existing CodeCommit repo | `string` | `null` | no |
 | <a name="input_existing_repo_url"></a> [existing\_repo\_url](#input\_existing\_repo\_url) | URL for the existing repo. | `string` | `null` | no |
 | <a name="input_github_access_token"></a> [github\_access\_token](#input\_github\_access\_token) | Optional GitHub access token. Only required if using GitHub repo. | `string` | `null` | no |
