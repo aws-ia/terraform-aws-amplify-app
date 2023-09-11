@@ -15,6 +15,12 @@ variable "build_spec" {
   default     = null
   description = "The actual content of your build_spec. Use if 'path_to_build_spec' is not defined."
 }
+variable "environment_variables" {
+  type        = map(string)
+  default     = null
+  description = "Global environment variables for your Amplify App. These will only appear in the AWS Management Console if a git repo is connected."
+
+}
 variable "manual_branches" {
   type        = map(any)
   default     = {}
@@ -100,6 +106,12 @@ variable "custom_rewrite_and_redirect" {
   type        = map(any)
   default     = {}
   description = "Custom rewrites and redirects for the domain associations."
+
+}
+variable "app_tags" {
+  type        = map(string)
+  default     = null
+  description = "Tags for your Amplify App."
 
 }
 

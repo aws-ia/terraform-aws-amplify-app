@@ -26,7 +26,10 @@ module "aws-amplify-app" {
   enable_performance_mode       = false    // Default value - caches data longer in CDN
   app_framework                 = "Something bloated and hard to maintain"
 
-
+  // Global environment variables for the app. These will only appear if a git repo is connected
+  environment_variables = {
+    env-var = "hello"
+  }
 
 
   // - Custom Domain -
