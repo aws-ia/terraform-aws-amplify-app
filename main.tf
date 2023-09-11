@@ -36,6 +36,7 @@ resource "aws_amplify_app" "sample_app" {
   #   sample_GRAPHQL_API_ID      = "${aws_appsync_graphql_api.sample_appsync_graphql_api.id}"
   #   sample_LANDING_BUCKET_NAME = "${aws_s3_bucket.sample_landing_bucket.id}"
   # }
+  environment_variables = var.environment_variables
 }
 
 # Create Branch-level Environment Variables
