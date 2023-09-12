@@ -6,10 +6,10 @@ import (
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
-func TestExamplesBasic(t *testing.T) {
+func TestCodeCommitManualBranches(t *testing.T) {
 
 	terraformOptions := &terraform.Options{
-		TerraformDir: "../examples/basic",
+		TerraformDir: "../examples/codecommit-deployment/manual-branch-creation",
 		// Vars: map[string]interface{}{
 		// 	"myvar":     "test",
 		// 	"mylistvar": []string{"list_item_1"},

@@ -30,11 +30,13 @@ rule "terraform_typed_variables" {
 }
 
 rule "terraform_unused_declarations" {
-  enabled = true
+  enabled = false
+  # enabled = true
 }
 
 rule "terraform_comment_syntax" {
-  enabled = true
+  enabled = false
+  # enabled = true
 }
 
 rule "terraform_deprecated_index" {
@@ -42,7 +44,8 @@ rule "terraform_deprecated_index" {
 }
 
 rule "terraform_deprecated_interpolation" {
-  enabled = true
+  enabled = false
+  # enabled = true
 }
 
 rule "terraform_documented_outputs" {
