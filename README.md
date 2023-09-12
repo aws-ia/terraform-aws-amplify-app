@@ -18,7 +18,7 @@
 // Modify the parameters below with actual values
 module "sample-qs" {
   // location of the module - can be local or git repo
-  source = "novekm/amplify-app/aws"
+  source = "aws-ia/amplify-app/aws"
 
   app_name = "my-app"
   create_codecommit_repo = true
