@@ -67,3 +67,5 @@ resource "aws_amplify_domain_association" "amplify_domain_association" {
 
   depends_on = [aws_amplify_branch.manual]
 }
+
+
