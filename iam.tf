@@ -1,6 +1,6 @@
 # --- TRUST RELATIONSHIPS ---
 # Amplify Trust Relationship
-data "aws_iam_policy_document" "amplify_trust_relationship" {
+data "aws_iam_policy_document" "amplify_codecommit" {
   statement {
     effect  = "Allow"
     actions = ["sts:AssumeRole"]
@@ -18,7 +18,7 @@ resource "aws_iam_role" "amplify_codecommit" {
   # count               = var.create_codecommit_repo ? 1 : 0
   count               = var.create_codecommit_repo ? 1 : 0
   name                = "${var.amplify_codecommit_role_name}-${var.app_name}"
-  assume_role_policy  = data.aws_iam_policy_document.amplify_trust_relationship.json
+  assume_role_policy  = data.aws_iam_policy_document.amplify_codecommit.json
   managed_policy_arns = ["arn:aws:iam::aws:policy/AWSCodeCommitReadOnly"]
 }
 
@@ -48,7 +48,7 @@ resource "aws_iam_user_policy" "gitlab_mirroring_policy" {
       Action = ["codecommit:GitPull", "codecommit:GitPush"]
       Effect = "Allow"
       Resource = [
-        "${aws_codecommit_repository.codecommit_repo[0].arn}"
+        "${aws_codecommit_repository.this[0].arn}"
       ]
     }]
 
