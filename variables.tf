@@ -1,4 +1,13 @@
-# - Amplify -
+variable "tags" {
+  description = "Tags to apply to resources"
+  type        = map(any)
+  default     = {}
+}
+
+################################################################################
+# App
+################################################################################
+
 variable "name" {
   type        = string
   default     = "sample-amplify-app"
@@ -10,142 +19,151 @@ variable "build_spec" {
   default     = null
   description = "The actual content of your build_spec. Use if 'path_to_build_spec' is not defined."
 }
+
 variable "environment_variables" {
   type        = map(string)
   default     = null
   description = "Global environment variables for your Amplify App. These will only appear in the AWS Management Console if a git repo is connected."
-
 }
-variable "branches" {
-  type        = map(any)
-  default     = {}
-  description = "Map of branch definitions to be created"
 
-}
 variable "enable_auto_branch_creation" {
   type        = bool
   default     = false
   description = "Enables automated branch creation for the Amplify app."
-
 }
+
 variable "enable_auto_branch_deletion" {
   type        = bool
   default     = false
   description = "Automatically disconnects a branch in the Amplify Console when you delete a branch from your Git repository."
-
 }
+
 variable "auto_branch_creation_patterns" {
   type        = list(any)
   default     = ["main", ]
   description = "Automated branch creation glob patterns for the Amplify app. Ex. feat*/*"
-
 }
+
 variable "enable_auto_build" {
   type        = bool
   default     = false
   description = "Enables auto-building of autocreated branches for the Amplify App."
-
 }
+
 variable "enable_app_pr_preview" {
   type        = bool
   default     = false
   description = "Enables pull request previews for the autocreated branch."
-
 }
+
 variable "enable_performance_mode" {
   type        = bool
   default     = false
   description = "Enables performance mode for the branch. This keeps cache at Edge Locations for up to 10min after changes."
 }
+
 variable "framework" {
   type        = string
   default     = null
   description = "Framework for the autocreated branch."
-
 }
+
 variable "repository" {
   type        = string
   default     = null
   description = "URL for the existing repo."
-
 }
+
 variable "access_token" {
   type        = string
   default     = null
   description = "Optional GitHub access token. Only required if using GitHub repo."
-
 }
+
+################################################################################
+# Branch(es)
+################################################################################
+
+variable "branches" {
+  description = "Map of branch definitions to be created"
+  type        = map(any)
+  default     = {}
+}
+
+################################################################################
+# Domain Association
+################################################################################
+
 variable "create_domain_association" {
   type        = bool
   default     = false
   description = "Enables default association of your domain with the 'main' branch of the Amplify App."
 }
+
 variable "domain_name" {
   type        = string
   default     = "example.com"
   description = "The name of your domain. Ex. naruto.ninja"
 }
+
 variable "sub_domains" {
   type        = map(any)
   default     = {}
   description = "The domains/subdomains you wish to associate with the Amplify App. These are mapped to git branches."
-
 }
+
 variable "wait_for_verification" {
   type        = bool
   default     = false
   description = "If set to 'true', the resource will wait for the domain association status to change to 'PENDING_DEPLOYMENT' or 'AVAILABLE'. Setting this to false will skip the process. Default is set to 'false'."
-
 }
+
 variable "custom_rules" {
   type        = map(any)
   default     = {}
   description = "Custom rewrites and redirects for the domain associations."
-
-}
-variable "app_tags" {
-  type        = map(string)
-  default     = null
-  description = "Tags for your Amplify App."
-
 }
 
-# - CodeCommit -
+################################################################################
+# CodeCommit
+################################################################################
+
 variable "create_codecommit_repo" {
   type        = bool
   default     = false
   description = "Conditional creation of CodeCommit repo"
 }
+
 variable "codecommit_repo_name" {
   type        = string
   default     = "codecommit_repo"
   description = "CodeCommit repo name"
 }
+
 variable "codecommit_repo_description" {
   type        = string
   default     = "The CodeCommit repo created during the Terraform deployment"
   description = "The description for the CodeCommit repo"
 }
+
 variable "codecommit_repo_default_branch" {
   type        = string
   default     = "main"
   description = "The default branch for the CodeCommit repo"
 }
+
 variable "existing_codecommit_repo_name" {
   type        = string
   default     = null
   description = "Name of existing CodeCommit repo"
-
 }
+
 variable "amplify_codecommit_role_name" {
   type        = string
   default     = "amplify-codecommit"
   description = "Name for the role Amplify will use to access the CodeCommit repo"
-
 }
 
-
-# - GitHub -
 variable "lookup_ssm_github_access_token" {
   type        = bool
   default     = false
@@ -157,38 +175,31 @@ variable "lookup_ssm_github_access_token" {
   EOF
 
 }
+
 variable "ssm_github_access_token_name" {
   type        = string
   default     = null
   description = "The name (key) of the SSM parameter store of your GitHub access token"
-
 }
 
+################################################################################
+# GitLab Mirroring
+################################################################################
 
-# - GitLab -
 variable "enable_gitlab_mirroring" {
   type        = bool
   default     = false
   description = "Enables GitLab mirroring to the option AWS CodeCommit repo."
 }
+
 variable "gitlab_mirroring_iam_user_name" {
-  type    = string
-  default = null
-  # default     = "gitlab_mirroring"
+  type        = string
+  default     = null
   description = "The IAM Username for the GitLab Mirroring IAM User."
 }
+
 variable "gitlab_mirroring_policy_name" {
   type        = string
   default     = "gitlab_mirroring_policy"
   description = "The name of the IAM policy attached to the GitLab Mirroring IAM User"
-}
-
-
-# Tags
-variable "tags" {
-  type = map(any)
-  default = {
-    "IAC_PROVIDER" = "Terraform"
-  }
-  description = "Tags to apply to resources"
 }

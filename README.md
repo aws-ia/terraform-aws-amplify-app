@@ -120,7 +120,6 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_access_token"></a> [access\_token](#input\_access\_token) | Optional GitHub access token. Only required if using GitHub repo. | `string` | `null` | no |
 | <a name="input_amplify_codecommit_role_name"></a> [amplify\_codecommit\_role\_name](#input\_amplify\_codecommit\_role\_name) | Name for the role Amplify will use to access the CodeCommit repo | `string` | `"amplify-codecommit"` | no |
-| <a name="input_app_tags"></a> [app\_tags](#input\_app\_tags) | Tags for your Amplify App. | `map(string)` | `null` | no |
 | <a name="input_auto_branch_creation_patterns"></a> [auto\_branch\_creation\_patterns](#input\_auto\_branch\_creation\_patterns) | Automated branch creation glob patterns for the Amplify app. Ex. feat*/* | `list(any)` | <pre>[<br>  "main"<br>]</pre> | no |
 | <a name="input_branches"></a> [branches](#input\_branches) | Map of branch definitions to be created | `map(any)` | `{}` | no |
 | <a name="input_build_spec"></a> [build\_spec](#input\_build\_spec) | The actual content of your build\_spec. Use if 'path\_to\_build\_spec' is not defined. | `string` | `null` | no |
@@ -147,7 +146,7 @@ No modules.
 | <a name="input_repository"></a> [repository](#input\_repository) | URL for the existing repo. | `string` | `null` | no |
 | <a name="input_ssm_github_access_token_name"></a> [ssm\_github\_access\_token\_name](#input\_ssm\_github\_access\_token\_name) | The name (key) of the SSM parameter store of your GitHub access token | `string` | `null` | no |
 | <a name="input_sub_domains"></a> [sub\_domains](#input\_sub\_domains) | The domains/subdomains you wish to associate with the Amplify App. These are mapped to git branches. | `map(any)` | `{}` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to resources | `map(any)` | <pre>{<br>  "IAC_PROVIDER": "Terraform"<br>}</pre> | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to resources | `map(any)` | `{}` | no |
 | <a name="input_wait_for_verification"></a> [wait\_for\_verification](#input\_wait\_for\_verification) | If set to 'true', the resource will wait for the domain association status to change to 'PENDING\_DEPLOYMENT' or 'AVAILABLE'. Setting this to false will skip the process. Default is set to 'false'. | `bool` | `false` | no |
 
 ## Outputs

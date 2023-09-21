@@ -2,7 +2,7 @@
 // Modify the parameters below with actual values
 module "amplify-app" {
   // location of the module - can be local or git repo
-  source = "../../../" // local module
+  source = "../../" // local module
   # source = "novekm/amplify-app/aws" // remote module
 
   name                           = "my-app"                             // Name of the Amplify App - default is 'sample-amplify-app'

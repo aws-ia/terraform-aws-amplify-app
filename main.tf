@@ -1,3 +1,13 @@
+################################################################################
+# App
+################################################################################
+
+data "aws_ssm_parameter" "ssm_github_access_token" {
+  count = var.lookup_ssm_github_access_token ? 1 : 0
+
+  name = var.ssm_github_access_token_name
+}
+
 resource "aws_amplify_app" "this" {
   name       = var.name
   repository = var.create_codecommit_repo ? aws_codecommit_repository.this[0].clone_url_http : var.repository
@@ -31,6 +41,10 @@ resource "aws_amplify_app" "this" {
   environment_variables = var.environment_variables
 }
 
+################################################################################
+# Branch(es)
+################################################################################
+
 resource "aws_amplify_branch" "this" {
   for_each = var.branches
 
@@ -40,6 +54,10 @@ resource "aws_amplify_branch" "this" {
   stage                 = lookup(each.value, "stage", null)
   environment_variables = lookup(each.value, "environment_variables", null)
 }
+
+################################################################################
+# Domain Association
+################################################################################
 
 resource "aws_amplify_domain_association" "this" {
   count = var.create_domain_association ? 1 : 0
@@ -58,4 +76,83 @@ resource "aws_amplify_domain_association" "this" {
   }
 
   depends_on = [aws_amplify_branch.this]
+}
+
+################################################################################
+# CodeCommit
+################################################################################
+
+resource "aws_codecommit_repository" "this" {
+  count = var.create_codecommit_repo ? 1 : 0
+
+  repository_name = var.codecommit_repo_name != null ? var.codecommit_repo_name : "codecommit-repo"
+  description     = var.codecommit_repo_description
+  default_branch  = var.codecommit_repo_default_branch
+
+  tags = merge(
+    {
+    "AppName" = var.name },
+    var.tags,
+  )
+}
+
+data "aws_iam_policy_document" "amplify_codecommit" {
+  count = var.create_codecommit_repo ? 1 : 0
+
+  statement {
+    effect  = "Allow"
+    actions = ["sts:AssumeRole"]
+    principals {
+      type        = "Service"
+      identifiers = ["amplify.amazonaws.com"]
+    }
+  }
+}
+
+resource "aws_iam_role" "amplify_codecommit" {
+  count = var.create_codecommit_repo ? 1 : 0
+
+  name                = "${var.amplify_codecommit_role_name}-${var.name}"
+  assume_role_policy  = data.aws_iam_policy_document.amplify_codecommit[0].json
+  managed_policy_arns = ["arn:aws:iam::aws:policy/AWSCodeCommitReadOnly"]
+}
+
+################################################################################
+# GitLab Mirroring
+################################################################################
+
+resource "aws_iam_user" "gitlab_mirroring" {
+  count = var.enable_gitlab_mirroring ? 1 : 0
+
+  name          = var.gitlab_mirroring_iam_user_name != null ? var.gitlab_mirroring_iam_user_name : "gitlab-mirroring"
+  path          = "/${var.name}/"
+  force_destroy = true
+
+  tags = merge(
+    {
+      "AppName" = var.name
+    },
+    var.tags,
+  )
+}
+
+resource "aws_iam_user_policy" "gitlab_mirroring_policy" {
+  count = var.enable_gitlab_mirroring ? 1 : 0
+
+  name = var.gitlab_mirroring_policy_name
+  user = aws_iam_user.gitlab_mirroring[0].name
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Action = [
+        "codecommit:GitPull",
+        "codecommit:GitPush",
+      ]
+      Effect = "Allow"
+      Resource = [
+        "${aws_codecommit_repository.this[0].arn}"
+      ]
+    }]
+  })
 }
