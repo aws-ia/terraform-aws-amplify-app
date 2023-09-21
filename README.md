@@ -1,14 +1,4 @@
-# Features
-
-- Conditional and Dynamic Resource Creation
-- Automatic and Manual Branch Creation Support
-- Automatic and Manual Branch Deletion Support
-- Automatic Build for Branches Support
-- Customizable Automatic Branch Creation Patterns Support
-- Pull Request Previews Support
-- CodeCommit, GitHub, GitLab support with examples
-- **Related workshop for deeper explanation**
-  - [**Automated Deployment of AWS Amplify Apps with Terraform**](https://catalog.workshops.aws/amplify-with-terraform/)
+# Terraform AWS Amplify App Module
 
 ## Basic Usage - CodeCommit Repo with Automatic Branch Creation
 

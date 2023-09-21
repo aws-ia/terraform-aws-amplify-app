@@ -25,9 +25,8 @@ module "amplify_app" {
     EXAMPLE = "hello"
   }
 
-  repository                     = "your-existing-repo-url"
-  lookup_ssm_github_access_token = true
-  ssm_github_access_token_name   = "Enter-Your-SSM-Parameter-Store-Key"
+  repository   = var.repository
+  access_token = var.access_token
 
   # Note: branches specified must already exist in the connected repository
   branches = {

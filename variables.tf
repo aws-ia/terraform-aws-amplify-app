@@ -11,31 +11,31 @@ variable "tags" {
 variable "name" {
   type        = string
   default     = "sample-amplify-app"
-  description = "The name of the Sample Amplify Application."
+  description = "The name of the Sample Amplify Application"
 }
 
 variable "build_spec" {
   type        = string
   default     = null
-  description = "The actual content of your build_spec. Use if 'path_to_build_spec' is not defined."
+  description = "The actual content of your build_spec. Use if 'path_to_build_spec' is not defined"
 }
 
 variable "environment_variables" {
   type        = map(string)
   default     = null
-  description = "Global environment variables for your Amplify App. These will only appear in the AWS Management Console if a git repo is connected."
+  description = "Global environment variables for your Amplify App. These will only appear in the AWS Management Console if a git repo is connected"
 }
 
 variable "enable_auto_branch_creation" {
   type        = bool
   default     = false
-  description = "Enables automated branch creation for the Amplify app."
+  description = "Enables automated branch creation for the Amplify app"
 }
 
 variable "enable_auto_branch_deletion" {
   type        = bool
   default     = false
-  description = "Automatically disconnects a branch in the Amplify Console when you delete a branch from your Git repository."
+  description = "Automatically disconnects a branch in the Amplify Console when you delete a branch from your Git repository"
 }
 
 variable "auto_branch_creation_patterns" {
@@ -47,37 +47,37 @@ variable "auto_branch_creation_patterns" {
 variable "enable_auto_build" {
   type        = bool
   default     = false
-  description = "Enables auto-building of autocreated branches for the Amplify App."
+  description = "Enables auto-building of autocreated branches for the Amplify App"
 }
 
 variable "enable_pull_request_preview" {
   type        = bool
   default     = false
-  description = "Enables pull request previews for the autocreated branch."
+  description = "Enables pull request previews for the autocreated branch"
 }
 
 variable "enable_performance_mode" {
   type        = bool
   default     = false
-  description = "Enables performance mode for the branch. This keeps cache at Edge Locations for up to 10min after changes."
+  description = "Enables performance mode for the branch. This keeps cache at Edge Locations for up to 10min after changes"
 }
 
 variable "framework" {
   type        = string
   default     = null
-  description = "Framework for the autocreated branch."
+  description = "Framework for the autocreated branch"
 }
 
 variable "repository" {
   type        = string
   default     = null
-  description = "URL for the existing repo."
+  description = "URL for the existing repo"
 }
 
 variable "access_token" {
   type        = string
   default     = null
-  description = "Optional GitHub access token. Only required if using GitHub repo."
+  description = "Optional GitHub access token. Only required if using GitHub repo"
 }
 
 ################################################################################
@@ -97,7 +97,7 @@ variable "branches" {
 variable "create_domain_association" {
   type        = bool
   default     = false
-  description = "Enables default association of your domain with the 'main' branch of the Amplify App."
+  description = "Enables default association of your domain with the 'main' branch of the Amplify App"
 }
 
 variable "domain_name" {
@@ -109,19 +109,19 @@ variable "domain_name" {
 variable "sub_domains" {
   type        = map(any)
   default     = {}
-  description = "The domains/subdomains you wish to associate with the Amplify App. These are mapped to git branches."
+  description = "The domains/subdomains you wish to associate with the Amplify App. These are mapped to git branches"
 }
 
 variable "wait_for_verification" {
   type        = bool
   default     = false
-  description = "If set to 'true', the resource will wait for the domain association status to change to 'PENDING_DEPLOYMENT' or 'AVAILABLE'. Setting this to false will skip the process. Default is set to 'false'."
+  description = "If set to 'true', the resource will wait for the domain association status to change to 'PENDING_DEPLOYMENT' or 'AVAILABLE'. Setting this to false will skip the process. Default is set to 'false'"
 }
 
 variable "custom_rules" {
   type        = map(any)
   default     = {}
-  description = "Custom rewrites and redirects for the domain associations."
+  description = "Custom rewrites and redirects for the domain associations"
 }
 
 ################################################################################
@@ -158,24 +158,6 @@ variable "amplify_codecommit_role_name" {
   description = "Name for the role Amplify will use to access the CodeCommit repo"
 }
 
-variable "lookup_ssm_github_access_token" {
-  type        = bool
-  default     = false
-  description = <<-EOF
-  *IMPORTANT!*
-  Conditional data fetch of SSM parameter store for GitHub access token.
-  To ensure security of this token, you must manually add it via the AWS console
-  before using.
-  EOF
-
-}
-
-variable "ssm_github_access_token_name" {
-  type        = string
-  default     = null
-  description = "The name (key) of the SSM parameter store of your GitHub access token"
-}
-
 ################################################################################
 # GitLab Mirror
 ################################################################################
@@ -183,13 +165,13 @@ variable "ssm_github_access_token_name" {
 variable "create_gitlab_mirror_iam_user" {
   type        = bool
   default     = false
-  description = "Enables GitLab mirror to the option AWS CodeCommit repo."
+  description = "Enables GitLab mirror to the option AWS CodeCommit repo"
 }
 
 variable "gitlab_mirror_iam_user_name" {
   type        = string
   default     = null
-  description = "The IAM Username for the GitLab mirror IAM User."
+  description = "The IAM Username for the GitLab mirror IAM User"
 }
 
 variable "gitlab_mirror_policy_name" {

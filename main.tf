@@ -2,12 +2,6 @@
 # App
 ################################################################################
 
-data "aws_ssm_parameter" "ssm_github_access_token" {
-  count = var.lookup_ssm_github_access_token ? 1 : 0
-
-  name = var.ssm_github_access_token_name
-}
-
 resource "aws_amplify_app" "this" {
   name       = var.name
   repository = var.create_codecommit_repo ? aws_codecommit_repository.this[0].clone_url_http : var.repository
@@ -24,8 +18,8 @@ resource "aws_amplify_app" "this" {
     framework                   = var.framework
   }
 
-  iam_service_role_arn = var.create_codecommit_repo ? aws_iam_role.amplify_codecommit[0].arn : null
-  access_token         = var.lookup_ssm_github_access_token ? data.aws_ssm_parameter.ssm_github_access_token[0].value : var.access_token
+  iam_service_role_arn = var.create_codecommit_repo ? aws_iam_role.amplify_codecommit[0].arn : var.iam_service_role_arn
+  access_token         = var.access_token
   build_spec           = var.build_spec
 
   dynamic "custom_rule" {
@@ -39,6 +33,8 @@ resource "aws_amplify_app" "this" {
   }
 
   environment_variables = var.environment_variables
+
+  tags = var.tags
 }
 
 ################################################################################
@@ -89,11 +85,7 @@ resource "aws_codecommit_repository" "this" {
   description     = var.codecommit_repo_description
   default_branch  = var.codecommit_repo_default_branch
 
-  tags = merge(
-    {
-    "AppName" = var.name },
-    var.tags,
-  )
+  tags = var.tags
 }
 
 data "aws_iam_policy_document" "amplify_codecommit" {
@@ -128,12 +120,7 @@ resource "aws_iam_user" "gitlab_mirror" {
   path          = "/${var.name}/"
   force_destroy = true
 
-  tags = merge(
-    {
-      "AppName" = var.name
-    },
-    var.tags,
-  )
+  tags = var.tags
 }
 
 resource "aws_iam_user_policy" "gitlab_mirror_policy" {
