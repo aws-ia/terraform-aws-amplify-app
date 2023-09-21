@@ -50,7 +50,7 @@ variable "enable_auto_build" {
   description = "Enables auto-building of autocreated branches for the Amplify App."
 }
 
-variable "enable_app_pr_preview" {
+variable "enable_pull_request_preview" {
   type        = bool
   default     = false
   description = "Enables pull request previews for the autocreated branch."
@@ -152,12 +152,6 @@ variable "codecommit_repo_default_branch" {
   description = "The default branch for the CodeCommit repo"
 }
 
-variable "existing_codecommit_repo_name" {
-  type        = string
-  default     = null
-  description = "Name of existing CodeCommit repo"
-}
-
 variable "amplify_codecommit_role_name" {
   type        = string
   default     = "amplify-codecommit"
@@ -183,23 +177,23 @@ variable "ssm_github_access_token_name" {
 }
 
 ################################################################################
-# GitLab Mirroring
+# GitLab Mirror
 ################################################################################
 
-variable "enable_gitlab_mirroring" {
+variable "create_gitlab_mirror_iam_user" {
   type        = bool
   default     = false
-  description = "Enables GitLab mirroring to the option AWS CodeCommit repo."
+  description = "Enables GitLab mirror to the option AWS CodeCommit repo."
 }
 
-variable "gitlab_mirroring_iam_user_name" {
+variable "gitlab_mirror_iam_user_name" {
   type        = string
   default     = null
-  description = "The IAM Username for the GitLab Mirroring IAM User."
+  description = "The IAM Username for the GitLab mirror IAM User."
 }
 
-variable "gitlab_mirroring_policy_name" {
+variable "gitlab_mirror_policy_name" {
   type        = string
-  default     = "gitlab_mirroring_policy"
-  description = "The name of the IAM policy attached to the GitLab Mirroring IAM User"
+  default     = "gitlab_mirror_policy"
+  description = "The name of the IAM policy attached to the GitLab mirror IAM User"
 }

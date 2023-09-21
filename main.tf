@@ -19,7 +19,7 @@ resource "aws_amplify_app" "this" {
 
   auto_branch_creation_config {
     enable_auto_build           = var.enable_auto_build
-    enable_pull_request_preview = var.enable_app_pr_preview
+    enable_pull_request_preview = var.enable_pull_request_preview
     enable_performance_mode     = var.enable_performance_mode
     framework                   = var.framework
   }
@@ -118,13 +118,13 @@ resource "aws_iam_role" "amplify_codecommit" {
 }
 
 ################################################################################
-# GitLab Mirroring
+# GitLab Mirror
 ################################################################################
 
-resource "aws_iam_user" "gitlab_mirroring" {
-  count = var.enable_gitlab_mirroring ? 1 : 0
+resource "aws_iam_user" "gitlab_mirror" {
+  count = var.create_codecommit_repo && var.create_gitlab_mirror_iam_user ? 1 : 0
 
-  name          = var.gitlab_mirroring_iam_user_name != null ? var.gitlab_mirroring_iam_user_name : "gitlab-mirroring"
+  name          = var.gitlab_mirror_iam_user_name != null ? var.gitlab_mirror_iam_user_name : "gitlab-mirror"
   path          = "/${var.name}/"
   force_destroy = true
 
@@ -136,11 +136,11 @@ resource "aws_iam_user" "gitlab_mirroring" {
   )
 }
 
-resource "aws_iam_user_policy" "gitlab_mirroring_policy" {
-  count = var.enable_gitlab_mirroring ? 1 : 0
+resource "aws_iam_user_policy" "gitlab_mirror_policy" {
+  count = var.create_codecommit_repo && var.create_gitlab_mirror_iam_user ? 1 : 0
 
-  name = var.gitlab_mirroring_policy_name
-  user = aws_iam_user.gitlab_mirroring[0].name
+  name = var.gitlab_mirror_policy_name
+  user = aws_iam_user.gitlab_mirror[0].name
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -151,7 +151,7 @@ resource "aws_iam_user_policy" "gitlab_mirroring_policy" {
       ]
       Effect = "Allow"
       Resource = [
-        "${aws_codecommit_repository.this[0].arn}"
+        aws_codecommit_repository.this[0].arn
       ]
     }]
   })
