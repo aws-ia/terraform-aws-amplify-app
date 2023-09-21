@@ -1,12 +1,6 @@
 # Current AWS region
 data "aws_region" "current" {}
 
-# Current AWS user session info
-# data "aws_caller_identity" "current" {} // use to get current session info
-# .account_id
-# .arn
-# .user_id
-
 # GitHub Access Token SSM Parameter
 data "aws_ssm_parameter" "ssm_github_access_token" {
   count = var.lookup_ssm_github_access_token ? 1 : 0

@@ -115,27 +115,6 @@ variable "app_tags" {
 
 }
 
-
-# - Route53 - ** Not currently used **
-# variable "create_route53_hosted_zone" {
-#   type        = bool
-#   default     = false
-#   description = "Conditional creation of Route53 hosted zone"
-
-# }
-
-# variable "sub_domain_route53_records" {
-#   type    = map(any)
-#   default = {}
-# }
-# variable "lookup_existing_route53_zone" {
-#   type = bool
-#   default = false
-#   description = "Conditional fetch of existing Route53 hosted zone"
-# }
-
-
-
 # - CodeCommit -
 variable "create_codecommit_repo" {
   type        = bool
