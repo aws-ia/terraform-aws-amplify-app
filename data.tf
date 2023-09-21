@@ -3,9 +3,3 @@ data "aws_ssm_parameter" "ssm_github_access_token" {
 
   name = var.ssm_github_access_token_name
 }
-
-data "aws_codecommit_repository" "test" {
-  count = var.lookup_existing_codecommit_repo ? 1 : 0
-
-  repository_name = var.existing_codecommit_repo_name
-}

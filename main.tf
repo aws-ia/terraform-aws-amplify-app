@@ -1,6 +1,6 @@
 resource "aws_amplify_app" "this" {
-  name       = var.app_name
-  repository = var.create_codecommit_repo ? aws_codecommit_repository.this[0].clone_url_http : var.existing_repo_url
+  name       = var.name
+  repository = var.create_codecommit_repo ? aws_codecommit_repository.this[0].clone_url_http : var.repository
 
   # Auto Branch
   enable_auto_branch_creation   = var.enable_auto_branch_creation
@@ -11,15 +11,15 @@ resource "aws_amplify_app" "this" {
     enable_auto_build           = var.enable_auto_build
     enable_pull_request_preview = var.enable_app_pr_preview
     enable_performance_mode     = var.enable_performance_mode
-    framework                   = var.app_framework
+    framework                   = var.framework
   }
 
   iam_service_role_arn = var.create_codecommit_repo ? aws_iam_role.amplify_codecommit[0].arn : null
-  access_token         = var.lookup_ssm_github_access_token ? data.aws_ssm_parameter.ssm_github_access_token[0].value : var.github_access_token
-  build_spec           = var.path_to_build_spec != null ? var.path_to_build_spec : var.build_spec
+  access_token         = var.lookup_ssm_github_access_token ? data.aws_ssm_parameter.ssm_github_access_token[0].value : var.access_token
+  build_spec           = var.build_spec
 
   dynamic "custom_rule" {
-    for_each = length(var.custom_rewrite_and_redirect) > 0 ? var.custom_rewrite_and_redirect : {}
+    for_each = length(var.custom_rules) > 0 ? var.custom_rules : {}
 
     content {
       source = lookup(custom_rule.value, "source", "</^[^.]+$|\\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|ttf|map|json)$)([^.]+$)/>")
@@ -32,7 +32,7 @@ resource "aws_amplify_app" "this" {
 }
 
 resource "aws_amplify_branch" "this" {
-  for_each = var.manual_branches
+  for_each = var.branches
 
   app_id                = aws_amplify_app.this.id
   branch_name           = lookup(each.value, "branch_name", null)
@@ -42,14 +42,14 @@ resource "aws_amplify_branch" "this" {
 }
 
 resource "aws_amplify_domain_association" "this" {
-  count = var.create_domain_associations ? 1 : 0
+  count = var.create_domain_association ? 1 : 0
 
   wait_for_verification = var.wait_for_verification
   app_id                = aws_amplify_app.this.id
   domain_name           = var.domain_name
 
   dynamic "sub_domain" {
-    for_each = var.domain_associations
+    for_each = var.sub_domains
 
     content {
       branch_name = lookup(sub_domain.value, "branch_name", null)

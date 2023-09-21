@@ -7,8 +7,7 @@ resource "aws_codecommit_repository" "this" {
 
   tags = merge(
     {
-      "AppName" = var.app_name
-    },
+    "AppName" = var.name },
     var.tags,
   )
 }

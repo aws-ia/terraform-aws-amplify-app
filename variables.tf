@@ -1,15 +1,10 @@
 # - Amplify -
-variable "app_name" {
+variable "name" {
   type        = string
   default     = "sample-amplify-app"
   description = "The name of the Sample Amplify Application."
 }
-variable "path_to_build_spec" {
-  type        = string
-  default     = null
-  description = "The path to the location of your build_spec file. Use if 'build_spec' is not defined."
 
-}
 variable "build_spec" {
   type        = string
   default     = null
@@ -21,10 +16,10 @@ variable "environment_variables" {
   description = "Global environment variables for your Amplify App. These will only appear in the AWS Management Console if a git repo is connected."
 
 }
-variable "manual_branches" {
+variable "branches" {
   type        = map(any)
   default     = {}
-  description = "List of manual branches you wish to create."
+  description = "Map of branch definitions to be created"
 
 }
 variable "enable_auto_branch_creation" {
@@ -62,25 +57,25 @@ variable "enable_performance_mode" {
   default     = false
   description = "Enables performance mode for the branch. This keeps cache at Edge Locations for up to 10min after changes."
 }
-variable "app_framework" {
+variable "framework" {
   type        = string
   default     = null
   description = "Framework for the autocreated branch."
 
 }
-variable "existing_repo_url" {
+variable "repository" {
   type        = string
   default     = null
   description = "URL for the existing repo."
 
 }
-variable "github_access_token" {
+variable "access_token" {
   type        = string
   default     = null
   description = "Optional GitHub access token. Only required if using GitHub repo."
 
 }
-variable "create_domain_associations" {
+variable "create_domain_association" {
   type        = bool
   default     = false
   description = "Enables default association of your domain with the 'main' branch of the Amplify App."
@@ -90,7 +85,7 @@ variable "domain_name" {
   default     = "example.com"
   description = "The name of your domain. Ex. naruto.ninja"
 }
-variable "domain_associations" {
+variable "sub_domains" {
   type        = map(any)
   default     = {}
   description = "The domains/subdomains you wish to associate with the Amplify App. These are mapped to git branches."
@@ -102,7 +97,7 @@ variable "wait_for_verification" {
   description = "If set to 'true', the resource will wait for the domain association status to change to 'PENDING_DEPLOYMENT' or 'AVAILABLE'. Setting this to false will skip the process. Default is set to 'false'."
 
 }
-variable "custom_rewrite_and_redirect" {
+variable "custom_rules" {
   type        = map(any)
   default     = {}
   description = "Custom rewrites and redirects for the domain associations."
@@ -135,12 +130,6 @@ variable "codecommit_repo_default_branch" {
   type        = string
   default     = "main"
   description = "The default branch for the CodeCommit repo"
-}
-variable "lookup_existing_codecommit_repo" {
-  type        = bool
-  default     = false
-  description = "Conditional fetch of existing CodeCommit repo"
-
 }
 variable "existing_codecommit_repo_name" {
   type        = string
