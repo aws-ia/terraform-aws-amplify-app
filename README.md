@@ -1,4 +1,3 @@
-<!-- BEGIN_TF_DOCS -->
 # Features
 
 - Conditional and Dynamic Resource Creation
@@ -11,7 +10,7 @@
 - **Related workshop for deeper explanation**
   - [**Automated Deployment of AWS Amplify Apps with Terraform**](https://catalog.workshops.aws/amplify-with-terraform/)
 
-# Basic Usage - CodeCommit Repo with Automatic Branch Creation
+## Basic Usage - CodeCommit Repo with Automatic Branch Creation
 
 ```hcl
 // This is a template file for a basic deployment.
@@ -71,7 +70,7 @@ module "sample-qs" {
 }
 ```
 
-# Examples
+## Examples
 
 - [CodeCommit Repo with Auto Branch Creation](https://github.com/aws-ia/terraform-aws-amplify-app/blob/main/examples/codecommit-deployment/auto-branch-creation/main.tf)
 - [CodeCommit Repo with Manual Branch Creation](https://github.com/aws-ia/terraform-aws-amplify-app/blob/main/examples/codecommit-deployment/manual-branch-creation/main.tf)
@@ -80,14 +79,15 @@ module "sample-qs" {
 - [GitLab Repo with Auto Branch Creation](https://github.com/aws-ia/terraform-aws-amplify-app/blob/main/examples/gitlab-deployment/auto-branch-creation/main.tf)
 - [GitLab Repo with Manual Branch Creation](https://github.com/aws-ia/terraform-aws-amplify-app/blob/main/examples/gitlab-deployment/auto-branch-creation/main.tf)
 
-# Contributing
+## Contributing
 
 See the `CONTRIBUTING.md` file for information on how to contribute.
 
-# Workshop
+## Workshop
 
 For more information, check out my workshop [**Automating Deployment of AWS Amplify Apps with Terraform**](https://catalog.workshops.aws/amplify-with-terraform/)
 
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
@@ -170,4 +170,4 @@ No modules.
 | <a name="output_amplify_app_production_branch"></a> [amplify\_app\_production\_branch](#output\_amplify\_app\_production\_branch) | The production branch for the Amplify App |
 | <a name="output_amplify_app_tags_all"></a> [amplify\_app\_tags\_all](#output\_amplify\_app\_tags\_all) | All tags for the Amplify App |
 | <a name="output_aws_current_region"></a> [aws\_current\_region](#output\_aws\_current\_region) | The current AWS region for your session |
-<!-- END_TF_DOCS -->
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

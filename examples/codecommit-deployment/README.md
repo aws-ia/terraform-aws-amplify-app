@@ -1,4 +1,3 @@
-<!-- BEGIN_TF_DOCS -->
 # CodeCommit Deployment
 
 This deployment path can be used if you wish to use an AWS CodeCommit repo with your Amplify App.
@@ -28,27 +27,5 @@ At this point you can add a custom domain.
 2. Re-apply the terraform code with `terraform apply`
 3. Head to the Amplify Console and click `Domain management`. If using a domain managed by Route53, you should automatically see the SSL domain being generated and associated for you.
 
-## Requirements
-
-No requirements.
-
-## Providers
-
-No providers.
-
-## Modules
-
-No modules.
-
-## Resources
-
-No resources.
-
-## Inputs
-
-No inputs.
-
-## Outputs
-
-No outputs.
-<!-- END_TF_DOCS -->
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
