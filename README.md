@@ -134,9 +134,10 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_amplify_app_arn"></a> [amplify\_app\_arn](#output\_amplify\_app\_arn) | The ARN for the Amplify App |
-| <a name="output_amplify_app_default_domain"></a> [amplify\_app\_default\_domain](#output\_amplify\_app\_default\_domain) | The default domain for the Amplify App |
-| <a name="output_amplify_app_id"></a> [amplify\_app\_id](#output\_amplify\_app\_id) | The App ID for the Amplify App |
-| <a name="output_amplify_app_production_branch"></a> [amplify\_app\_production\_branch](#output\_amplify\_app\_production\_branch) | The production branch for the Amplify App |
-| <a name="output_amplify_app_tags_all"></a> [amplify\_app\_tags\_all](#output\_amplify\_app\_tags\_all) | All tags for the Amplify App |
+| <a name="output_arn"></a> [arn](#output\_arn) | ARN of the Amplify app |
+| <a name="output_default_domain"></a> [default\_domain](#output\_default\_domain) | Default domain for the Amplify app |
+| <a name="output_domain_association_arn"></a> [domain\_association\_arn](#output\_domain\_association\_arn) | ARN of the Amplify domain association |
+| <a name="output_domain_association_certificate_verification_dns_record"></a> [domain\_association\_certificate\_verification\_dns\_record](#output\_domain\_association\_certificate\_verification\_dns\_record) | The DNS record for certificate verification |
+| <a name="output_id"></a> [id](#output\_id) | Unique ID of the Amplify app |
+| <a name="output_production_branch"></a> [production\_branch](#output\_production\_branch) | Describes the information about a production branch for an Amplify app |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

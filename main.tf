@@ -79,7 +79,7 @@ resource "aws_amplify_domain_association" "this" {
 }
 
 ################################################################################
-# CodeCommit
+# CodeCommit Repository
 ################################################################################
 
 resource "aws_codecommit_repository" "this" {
@@ -118,7 +118,7 @@ resource "aws_iam_role" "amplify_codecommit" {
 }
 
 ################################################################################
-# GitLab Mirror
+# GitLab Mirror IAM User
 ################################################################################
 
 resource "aws_iam_user" "gitlab_mirror" {
