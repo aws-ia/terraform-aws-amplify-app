@@ -1,11 +1,3 @@
-# TODO - Add more outputs
-
-# AWS Current Region
-output "aws_current_region" {
-  value       = data.aws_region.current
-  description = "The current AWS region for your session"
-
-}
 output "amplify_app_id" {
   value       = aws_amplify_app.sample_app.id
   description = "The App ID for the Amplify App"

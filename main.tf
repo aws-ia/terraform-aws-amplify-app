@@ -27,7 +27,6 @@ resource "aws_amplify_app" "sample_app" {
   }
   #  Create App-level Environment Variables
   # environment_variables = {
-  #   sample_REGION              = "${data.aws_region.current.id}"
   #   sample_CODECOMMIT_REPO_ID  = "${var.sample_create_codecommit_repo ? aws_codecommit_repository.sample_codecommit_repo[0].repository_id : null}" //return null if no cc repo is created
   #   sample_USER_POOL_ID        = "${aws_cognito_user_pool.sample_user_pool.id}"
   #   sample_IDENTITY_POOL_ID    = "${aws_cognito_identity_pool.sample_identity_pool.id}"

@@ -118,7 +118,6 @@ No modules.
 | [aws_iam_user_policy.gitlab_mirroring_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy) | resource |
 | [aws_codecommit_repository.test](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/codecommit_repository) | data source |
 | [aws_iam_policy_document.amplify_trust_relationship](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
-| [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 | [aws_ssm_parameter.ssm_github_access_token](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ssm_parameter) | data source |
 
 ## Inputs
@@ -168,5 +167,4 @@ No modules.
 | <a name="output_amplify_app_id"></a> [amplify\_app\_id](#output\_amplify\_app\_id) | The App ID for the Amplify App |
 | <a name="output_amplify_app_production_branch"></a> [amplify\_app\_production\_branch](#output\_amplify\_app\_production\_branch) | The production branch for the Amplify App |
 | <a name="output_amplify_app_tags_all"></a> [amplify\_app\_tags\_all](#output\_amplify\_app\_tags\_all) | All tags for the Amplify App |
-| <a name="output_aws_current_region"></a> [aws\_current\_region](#output\_aws\_current\_region) | The current AWS region for your session |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

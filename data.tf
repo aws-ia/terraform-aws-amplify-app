@@ -1,6 +1,3 @@
-# Current AWS region
-data "aws_region" "current" {}
-
 # GitHub Access Token SSM Parameter
 data "aws_ssm_parameter" "ssm_github_access_token" {
   count = var.lookup_ssm_github_access_token ? 1 : 0
