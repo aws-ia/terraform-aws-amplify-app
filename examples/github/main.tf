@@ -1,6 +1,6 @@
 // This is a template file for a basic deployment.
 // Modify the parameters below with actual values
-module "aws-amplify-app" {
+module "amplify-app" {
   // location of the module - can be local or git repo
   source = "../../../" // local module
   # source = "novekm/amplify-app/aws" // remote module
@@ -10,7 +10,7 @@ module "aws-amplify-app" {
   lookup_ssm_github_access_token = true                                 // Recommended method. Create a parameter in SSM with your GitHub access token and reference then name of the value in `ssm_github_access_token_name`.
   ssm_github_access_token_name   = "Enter-Your-SSM-Parameter-Store-Key" // name of the paramater in SSM
 
-  build_spec = file("../buildspec-react-app/amplify.yml") // Example path if you want build_spec to be in a specific file. Only use if you are not using 'build_spec' variable
+  build_spec = file("buildspec.yaml")
 
   // For this to work with domain associations, the branch(es) must already exist in your
   // connected git repo. See the README for more information.

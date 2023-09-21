@@ -71,12 +71,8 @@ module "sample-qs" {
 
 ## Examples
 
-- [CodeCommit Repo with Auto Branch Creation](https://github.com/aws-ia/terraform-aws-amplify-app/blob/main/examples/codecommit-deployment/auto-branch-creation/main.tf)
-- [CodeCommit Repo with Manual Branch Creation](https://github.com/aws-ia/terraform-aws-amplify-app/blob/main/examples/codecommit-deployment/manual-branch-creation/main.tf)
-- [GitHub Repo with Auto Branch Creation](https://github.com/aws-ia/terraform-aws-amplify-app/blob/main/examples/github-deployment/auto-branch-creation/main.tf)
-- [GitHub Repo with Manual Branch Creation](https://github.com/aws-ia/terraform-aws-amplify-app/blob/main/examples/github-deployment/auto-branch-creation/main.tf)
-- [GitLab Repo with Auto Branch Creation](https://github.com/aws-ia/terraform-aws-amplify-app/blob/main/examples/gitlab-deployment/auto-branch-creation/main.tf)
-- [GitLab Repo with Manual Branch Creation](https://github.com/aws-ia/terraform-aws-amplify-app/blob/main/examples/gitlab-deployment/auto-branch-creation/main.tf)
+- [CodeCommit Repo with Manual Branch Creation](https://github.com/aws-ia/terraform-aws-amplify-app/blob/main/examples/codecommit)
+- [GitHub Repo with Auto Branch Creation](https://github.com/aws-ia/terraform-aws-amplify-app/blob/main/examples/github)
 
 ## Contributing
 
