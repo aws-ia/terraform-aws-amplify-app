@@ -19,7 +19,8 @@ resource "aws_amplify_app" "this" {
   build_spec           = var.path_to_build_spec != null ? var.path_to_build_spec : var.build_spec
 
   dynamic "custom_rule" {
-    for_each = var.custom_rewrite_and_redirect == null ? {} : var.custom_rewrite_and_redirect
+    for_each = length(var.custom_rewrite_and_redirect) > 0 ? var.custom_rewrite_and_redirect : {}
+
     content {
       source = lookup(custom_rule.value, "source", "</^[^.]+$|\\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|ttf|map|json)$)([^.]+$)/>")
       status = lookup(custom_rule.value, "status", "200")
@@ -31,7 +32,7 @@ resource "aws_amplify_app" "this" {
 }
 
 resource "aws_amplify_branch" "this" {
-  for_each = var.manual_branches == null ? {} : var.manual_branches
+  for_each = var.manual_branches
 
   app_id                = aws_amplify_app.this.id
   branch_name           = lookup(each.value, "branch_name", null)
@@ -48,7 +49,7 @@ resource "aws_amplify_domain_association" "this" {
   domain_name           = var.domain_name
 
   dynamic "sub_domain" {
-    for_each = var.domain_associations == null ? {} : var.domain_associations
+    for_each = var.domain_associations
 
     content {
       branch_name = lookup(sub_domain.value, "branch_name", null)
