@@ -9,6 +9,9 @@ echo "Starting Functional Tests"
 
 cd ${PROJECT_PATH}
 
+#********** TF Env Vars *************
+export AWS_DEFAULT_REGION=us-east-1
+
 #********** Checkov Analysis *************
 echo "Running Checkov Analysis"
 terraform init
@@ -18,6 +21,7 @@ checkov --config-file ${PROJECT_PATH}/.config/.checkov.yml
 
 #********** Terratest execution **********
 echo "Running Terratest"
+export GOPROXY=https://goproxy.io,direct
 cd test
 rm -f go.mod
 go mod init github.com/aws-ia/terraform-project-ephemeral

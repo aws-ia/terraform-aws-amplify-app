@@ -1,9 +1,9 @@
 // This is a template file for a basic deployment.
 // Modify the parameters below with actual values
-module "saws-amplify-app" {
+module "aws-amplify-app" {
   // location of the module - can be local or git repo
   source = "../../../" // local module
-  # source = "novekm/amplify-app/aws" // remote module
+  # source = "aws-ia/amplify-app/aws" // remote module
 
   app_name                        = "my-app" // Name of the Amplify App - default is 'sample-amplify-app'
   create_codecommit_repo          = true     // Creates CodeCommit repo and necessary permissions for Amplify App to read from it. Default value is `false`

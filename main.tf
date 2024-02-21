@@ -25,17 +25,6 @@ resource "aws_amplify_app" "sample_app" {
       target = lookup(custom_rule.value, "target", "/index.html")
     }
   }
-  #  Create App-level Environment Variables
-  # environment_variables = {
-  #   sample_REGION              = "${data.aws_region.current.id}"
-  #   sample_CODECOMMIT_REPO_ID  = "${var.sample_create_codecommit_repo ? aws_codecommit_repository.sample_codecommit_repo[0].repository_id : null}" //return null if no cc repo is created
-  #   sample_USER_POOL_ID        = "${aws_cognito_user_pool.sample_user_pool.id}"
-  #   sample_IDENTITY_POOL_ID    = "${aws_cognito_identity_pool.sample_identity_pool.id}"
-  #   sample_APP_CLIENT_ID       = "${aws_cognito_user_pool_client.sample_user_pool_client.id}"
-  #   sample_GRAPHQL_ENDPOINT    = "${aws_appsync_graphql_api.sample_appsync_graphql_api.uris.GRAPHQL}"
-  #   sample_GRAPHQL_API_ID      = "${aws_appsync_graphql_api.sample_appsync_graphql_api.id}"
-  #   sample_LANDING_BUCKET_NAME = "${aws_s3_bucket.sample_landing_bucket.id}"
-  # }
   environment_variables = var.environment_variables
 }
 
@@ -67,3 +56,5 @@ resource "aws_amplify_domain_association" "amplify_domain_association" {
 
   depends_on = [aws_amplify_branch.manual]
 }
+
+

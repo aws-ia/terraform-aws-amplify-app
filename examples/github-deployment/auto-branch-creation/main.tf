@@ -3,7 +3,7 @@
 module "aws-amplify-app" {
   // location of the module - can be local or git repo
   source = "../../../" // local module
-  # source = "novekm/amplify-app/aws" // remote module
+  # source = "aws-ia/amplify-app/aws" // remote module
 
   app_name                       = "my-app"                             // Name of the Amplify App - default is 'sample-amplify-app'
   existing_repo_url              = "your-existing-repo-url"             // Your GitHub repo url
