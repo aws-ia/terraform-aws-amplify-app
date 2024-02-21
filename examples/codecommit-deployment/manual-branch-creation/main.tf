@@ -1,6 +1,6 @@
 // This is a template file for a basic deployment.
 // Modify the parameters below with actual values
-module "saws-amplify-app" {
+module "aws-amplify-app" {
   // location of the module - can be local or git repo
   source = "../../../" // local module
   # source = "aws-ia/amplify-app/aws" // remote module
